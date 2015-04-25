@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  #main
+  script(src="./components/jQuery/dist/jquery.min.js")
+  script
+    | if (typeof module === "object" && module.exports){
+    |   window.$ = window.jQuery = module.exports;
+    |   module.exports = {};
+    | }
+  script(src="./components/bootstrap-material-design/dist/js/ripples.min.js")
+  script(src="./components/bootstrap-material-design/dist/js/material.min.js")
+  script(src="./js/main.js")
