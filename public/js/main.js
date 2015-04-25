@@ -8,7 +8,7 @@ function loadTex(){
     $("#main").text("");
 
     json.sort(function(a,b){
-      return a.mtime < b.mtime
+      return a.mtime < b.mtime;
     }).forEach(function(d){
       $("#main").append(addingData(d));
     });
@@ -18,11 +18,28 @@ function loadTex(){
 
 
 function addingData(d){
-  var x  = "<div id="+ d.fileName + ">"
-    + "<h2>"+d.fileName+" ----  "+ jikoku(d.mtime)+"</h2>"
-    + kaigyou(d.text)
-    + "</div>";
-  return x
+  return well(d.fileName+" ----  "+ jikoku(d.mtime), kaigyou(d.text),d.fileName );
+}
+
+function icon(x){
+  return '<i class="'+x+'"></i>';
+}
+
+function well(h,b,id){
+  return '<div class="well" id="'+id+'">'
+    + '<h3>'+ icon('mdi-editor-mode-edit') + h + '</h3>'
+    + b
+    + '</div>';
+}
+function panel(h,b,id){
+  return '<div class="panel panel-info" id="'+id+'">'
+    + '<div class="panel-heading">'
+    + '<h3 class="panel-title">' + h + '</h3>'
+    + '</div>'
+    + '<div class="panel-body">'
+    + b
+    + '</div>'
+    + '</div>';
 }
 
 function jikoku(t){
@@ -33,5 +50,5 @@ function jikoku(t){
 }
 
 function kaigyou(st){
-  return "<p>" + st.split(/(\r\n\r\n|\n\n)/).join("</p><p>") + "</p>";
+  return st.split(/(\r\n\r\n|\n\n)/).join("<br>");
 }
