@@ -30,15 +30,17 @@ panel = (h,b,id) ->
     <div class="panel-heading">
       <h3 class="panel-title">#{h}</h3>
     </div>
-    <div class="panel-body">b</div>
+    <div class="panel-body">#{b}</div>
   </div>
   """
 jikoku = (t) ->
   tt = new Date(t)
   h = tt.getHours()
   m = tt.getMinutes()
-  "" + h + ":"+m
-
+  if m < 10
+    "" + h + ":0"+m
+  else
+    "" + h + ":"+m
 
 kaigyou = (st) ->
   st.split(/(\r\n\r\n|\n\n)/).join("<br>")
