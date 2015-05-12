@@ -1,10 +1,10 @@
 
-loadTex = ->
-  json = watchTex()
+loadTex = (dir) ->
+  json = watchTex(dir)
   $("#main").text("")
 
   json.sort (a,b) ->
-    return a.mtime < b.mtime
+    a.mtime < b.mtime
   .forEach (d) ->
     $("#main").append(addingData(d))
 
@@ -20,7 +20,7 @@ icon = (x) ->
 well = (h,b,id) ->
   """
   <div class="well" id="#{id}">
-  <h3>#{icon('mdi-editor-mode-edit')}#{h}'</h3>'
+  <h3>#{icon('mdi-editor-mode-edit')}#{h}</h3>
   #{b}
   </div>
   """
@@ -49,8 +49,9 @@ os = require('os')
 fs = require('fs')
 path = require('path')
 
-watchTex(dir='./tex') = ->
+watchTex = (dir) ->
   ar = []
+  # console.log dir
   fs.readdirSync(dir).forEach (f) ->
     fp = path.resolve(dir, f)
     mtime = fs.statSync(fp).mtime
@@ -59,9 +60,18 @@ watchTex(dir='./tex') = ->
       "fileName": f
       "text": d.toString()
       "mtime": mtime
-    ar.push(x)
+    if x.fileName.match /\.tex$/
+      ar.push(x)
   ar
 
 $ ->
-  loadTex()
-  setInterval(loadTex, 30000)
+  d = null
+  # loadTex()
+  $('#inputDir').change () ->
+    # 通常chromeと挙動異なる
+    d = $('#inputDir').get(0).files[0].path
+    # $('#dev').text(d)
+  setInterval(()->
+    if d
+      loadTex(d)
+  , 5000)

@@ -3,3 +3,5 @@ components
 .sass-cache
 cache
 release
+.DS_Store
+*~

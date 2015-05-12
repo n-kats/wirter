@@ -1,9 +1,9 @@
 (function() {
   var addingData, fs, icon, jikoku, kaigyou, loadTex, os, panel, path, watchTex, well;
 
-  loadTex = function() {
+  loadTex = function(dir) {
     var json;
-    json = watchTex();
+    json = watchTex(dir);
     $("#main").text("");
     json.sort(function(a, b) {
       return a.mtime < b.mtime;
@@ -18,15 +18,15 @@
   };
 
   icon = function(x) {
-    return '<i class="' + x + '"></i>';
+    return "<i class=\"" + x + "\"></i>";
   };
 
   well = function(h, b, id) {
-    return '<div class="well" id="' + id + '">' + '<h3>' + icon('mdi-editor-mode-edit') + h + '</h3>' + b + '</div>';
+    return "<div class=\"well\" id=\"" + id + "\">\n<h3>" + (icon('mdi-editor-mode-edit')) + h + "</h3>\n" + b + "\n</div>";
   };
 
   panel = function(h, b, id) {
-    return '<div class="panel panel-info" id="' + id + '">' + '<div class="panel-heading">' + '<h3 class="panel-title">' + h + '</h3>' + '</div>' + '<div class="panel-body">' + b + '</div>' + '</div>';
+    return "<div class=\"panel panel-info\" id=\"" + id + "\">\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">" + h + "</h3>\n  </div>\n  <div class=\"panel-body\">b</div>\n</div>";
   };
 
   jikoku = function(t) {
@@ -47,12 +47,12 @@
 
   path = require('path');
 
-  watchTex = function() {
+  watchTex = function(dir) {
     var ar;
     ar = [];
-    fs.readdirSync("./tex").forEach(function(f) {
+    fs.readdirSync(dir).forEach(function(f) {
       var d, fp, mtime, x;
-      fp = path.resolve('./tex', f);
+      fp = path.resolve(dir, f);
       mtime = fs.statSync(fp).mtime;
       d = fs.readFileSync(fp);
       x = {
@@ -60,14 +60,24 @@
         "text": d.toString(),
         "mtime": mtime
       };
-      return ar.push(x);
+      if (x.fileName.match(/\.tex$/)) {
+        return ar.push(x);
+      }
     });
     return ar;
   };
 
   $(function() {
-    loadTex();
-    return setInterval(loadTex, 30000);
+    var d;
+    d = null;
+    $('#inputDir').change(function() {
+      return d = $('#inputDir').get(0).files[0].path;
+    });
+    return setInterval(function() {
+      if (d) {
+        return loadTex(d);
+      }
+    }, 5000);
   });
 
 }).call(this);

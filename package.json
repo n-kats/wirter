@@ -20,9 +20,10 @@
     "electron-prebuilt": "^0.24.0",
     "gulp": "~3.8.10",
     "gulp-coffee": "^2.3.1",
-    "gulp-electron": "0.0.1",
+    "gulp-electron": "0.0.3",
     "gulp-jade": "^1.0.0",
     "gulp-livereload": "~3.4.0",
-    "gulp-nodemon": "~1.0.4"
+    "gulp-nodemon": "~1.0.4",
+    "log4js": "^0.6.24"
   }
 }

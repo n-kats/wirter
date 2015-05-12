@@ -1,24 +1,9 @@
 var gulp = require('gulp'),
-  //nodemon = require('gulp-nodemon'),
-  config = require('./config/config'),
-  //livereload = require('gulp-livereload')
   electron = require('gulp-electron')
   coffee = require('gulp-coffee')
   jade = require('gulp-jade')
   packageJson = require('./src/app/package.json');
-/*
-gulp.task('develop', function () {
-  livereload.listen();
-  nodemon({
-    script: 'app.js',
-    ext: 'js jade',
-  }).on('restart', function () {
-    setTimeout(function () {
-      livereload.changed(config.root);
-    }, 500);
-  });
-});
-*/
+
 gulp.task('coffee', function(){
   gulp.src("./src/coffee/**/*.coffee")
   .pipe(coffee())
