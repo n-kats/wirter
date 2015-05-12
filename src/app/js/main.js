@@ -26,7 +26,7 @@
   };
 
   panel = function(h, b, id) {
-    return "<div class=\"panel panel-info\" id=\"" + id + "\">\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">" + h + "</h3>\n  </div>\n  <div class=\"panel-body\">b</div>\n</div>";
+    return "<div class=\"panel panel-info\" id=\"" + id + "\">\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">" + h + "</h3>\n  </div>\n  <div class=\"panel-body\">" + b + "</div>\n</div>";
   };
 
   jikoku = function(t) {
@@ -34,7 +34,11 @@
     tt = new Date(t);
     h = tt.getHours();
     m = tt.getMinutes();
-    return "" + h + ":" + m;
+    if (m < 10) {
+      return "" + h + ":0" + m;
+    } else {
+      return "" + h + ":" + m;
+    }
   };
 
   kaigyou = function(st) {
