@@ -37,7 +37,7 @@ gulp.task('default', [
 ]);
 */
 gulp.task('build', ['jade', 'coffee']);//, 'electron']);
-
 gulp.task('default', [
   'build'
 ]);
+gulp.task('make', ['build', 'electron'])

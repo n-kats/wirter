@@ -9,6 +9,7 @@
   "dependencies": {
     "jQuery": "~2.1.3",
     "material-bootstrap": "~0.5.4",
-    "bootstrap-material-design": "~0.3.0"
+    "bootstrap-material-design": "~0.3.0",
+    "XyJax": "git://github.com/sonoisa/XyJax.git"
   }
 }

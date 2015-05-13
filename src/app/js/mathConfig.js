@@ -18,7 +18,8 @@
         mca: ['{\\mathcal{#1}}', 1],
         msc: ['{\\mathscr{#1}}', 1],
         mm: ['{\\mathop{\\mathrm{#1}}\\nolimits}', 1]
-      }
+      },
+      extensions: ["http://sonoisa.github.io/xyjax_ext/xypic.js"]
     }
   });
 
