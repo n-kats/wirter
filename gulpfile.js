@@ -27,7 +27,7 @@ gulp.task('electron', function(){
       cache: './cache',
       version: 'v0.24.0',
       rebuild: false,
-      platforms: ['win32-ia32', 'darwin-x64']
+      platforms: ['win32-ia32', 'darwin-x64', 'linux-x64']
   }))
   .pipe(gulp.dest(""));
 });
@@ -40,4 +40,4 @@ gulp.task('build', ['jade', 'coffee']);//, 'electron']);
 gulp.task('default', [
   'build'
 ]);
-gulp.task('make', ['build', 'electron'])
+gulp.task('make', ['build', 'electron']);
